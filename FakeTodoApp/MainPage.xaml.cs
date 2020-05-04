@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FakeTodoApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,14 @@ namespace FakeTodoApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public TodoItemViewModel TodoItem { get; set; }
+
         public MainPage()
         {
+            TodoItem = new TodoItemViewModel();
             this.InitializeComponent();
         }
+
+
     }
 }
