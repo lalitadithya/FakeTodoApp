@@ -8,20 +8,32 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ListView ItemsSource="{x:Bind TodoItem}" >
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="local:TodoItemViewModel">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{x:Bind Title}"/>
-                </Grid>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListView 
+            Grid.Row="0"
+            ItemsSource="{x:Bind mainPageViewModel.TodoItems}" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:TodoItemViewModel">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Bind Title}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBox 
+            x:Name="NewTodoItemTextBox"
+            Grid.Row="1"  
+            KeyDown="NewTodoItemTextBox_KeyDown"
+            />
+    </Grid>
 </Page>

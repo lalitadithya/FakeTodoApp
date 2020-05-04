@@ -26,12 +26,21 @@ namespace FakeTodoApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public IncrementalLoadingCollection<TodoItemSource, TodoItemViewModel> TodoItem { get; set; }
+        public MainPageViewModel mainPageViewModel;
 
         public MainPage()
         {
-            TodoItem = new IncrementalLoadingCollection<TodoItemSource, TodoItemViewModel>();
+            mainPageViewModel = new MainPageViewModel();
             this.InitializeComponent();
+        }
+
+        private void NewTodoItemTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if(e.Key == Windows.System.VirtualKey.Enter)
+            {
+                mainPageViewModel.AddTodoItem.Execute(NewTodoItemTextBox.Text);
+                NewTodoItemTextBox.Text = "";
+            }
         }
     }
 }
