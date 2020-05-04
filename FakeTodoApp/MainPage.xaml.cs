@@ -1,6 +1,9 @@
-﻿using FakeTodoApp.ViewModels;
+﻿using FakeTodoApp.Sources;
+using FakeTodoApp.ViewModels;
+using Microsoft.Toolkit.Uwp;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,14 +26,12 @@ namespace FakeTodoApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public TodoItemViewModel TodoItem { get; set; }
+        public IncrementalLoadingCollection<TodoItemSource, TodoItemViewModel> TodoItem { get; set; }
 
         public MainPage()
         {
-            TodoItem = new TodoItemViewModel();
+            TodoItem = new IncrementalLoadingCollection<TodoItemSource, TodoItemViewModel>();
             this.InitializeComponent();
         }
-
-
     }
 }
